@@ -1,0 +1,129 @@
+{# Load the tag library #} {% load bootstrap5 %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% block title %} {% endblock %} {# Load CSS #}
+  {% block style %}
+  {%bootstrap_css %}
+  <link rel="stylesheet" href="/" />
+  {% endblock %}
+</head>
+
+<body>
+  {# Display django.contrib.messages as Bootstrap alerts #}
+  {%bootstrap_messages %} {% comment %}
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Pics Haven</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" name="query" id="search" type="search" placeholder="Enter Category"
+            aria-label="Search" />
+          <button class="btn btn-outline-success" type="submit">
+            Search Image
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  {% endcomment %}
+
+  <nav class="navbar navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Pics Haven</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Pics Haven</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Locations
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+                {% for location in images %}
+                <li class="nav-item">
+                    <a class="nav-link" class="btn btn-outline-primary" href="#">{{location.location.name}}</a>
+                </li>
+                
+                {% endfor %}
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Categories
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+  
+                <li class="nav-item">
+                    <a class="nav-link" class="btn btn-outline-primary" href="#">Category</a>
+                </li>
+                
+              
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex" role="search" action="/">
+            <input class="form-control me-2" type="search" name="category" placeholder="Enter Category"
+                aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+  {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        <strong>{{message}}!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+  {% block content %} {% endblock %} {% bootstrap_javascript %}
+  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+</body>
+
+<style>
+  .navbar {
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+
+  .navbar-brand {
+    font-weight: bolder;
+  }
+
+  .nav-item {
+    font-weight: bold;
+  }
+</style>
+
+</html>
