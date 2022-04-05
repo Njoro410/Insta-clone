@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn instaclone5652.wsgi --log-file=-
+web: gunicorn meta.wsgi --log-file=-
