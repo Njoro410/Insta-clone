@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,13 +30,22 @@ SECRET_KEY = 'django-insecure-h%k0mlr3xhrm=qlj836g7&d^ue8!s8f45y2)spe+m^^9z9@(o%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['instaclone.herokuapp.com']
+
+#cloudinary config
+cloudinary.config( 
+  cloud_name = "dn6zkeb6i", 
+  api_key = "824151859578476", 
+  api_secret = "I8NNshAJn-Ge5wFoAyTzemF3nW4" 
+)
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'material',
+    'material.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -41,6 +54,10 @@ INSTALLED_APPS = [
     'insta.apps.InstaConfig',
     'bootstrap5',
     'cloudinary',
+    'crispy_forms',
+    'crispy_bootstrap5',
+    
+   
 ]
 
 MIDDLEWARE = [
@@ -66,6 +83,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
             ],
         },
     },
@@ -85,6 +103,17 @@ DATABASES = {
         'PASSWORD':'12345',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME':'d4mhtr9gaffshs',
+#         'USER':'tqcwsvdxjisqaa',
+#         'PASSWORD':'31ad81bb5ea1c9fdd01e82aedf6113c1e0d5761a6ec1de79ef47852e155f242e',
+#         'HOST':'ec2-52-73-155-171.compute-1.amazonaws.com',
+#         'PORT':'5432',
+#     }
+# }
 
 
 # Password validation
@@ -111,7 +140,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
@@ -127,7 +156,13 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+django_heroku.settings(locals())
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'home'
