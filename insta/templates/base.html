@@ -1,4 +1,7 @@
-{# Load the tag library #} {% load bootstrap5 %} {% load static %}
+{# Load the tag library #}
+
+{% include 'material/includes/material_css.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,15 +11,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   {% block title %} {% endblock %} {# Load CSS #}
   {% block style %}
-  {%bootstrap_css %}
+
   <link rel="stylesheet" href="/" />
   {% endblock %}
 </head>
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256- 
+DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
+</script>
+
+<!-- <script 
+src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js
+/materialize.min.js"></script> -->
 
 <body>
   {# Display django.contrib.messages as Bootstrap alerts #}
-  {%bootstrap_messages %} {% comment %}
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+
+  <!-- <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">Pics Haven</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -38,10 +48,60 @@
         </form>
       </div>
     </div>
-  </nav>
-  {% endcomment %}
+  </nav> -->
 
-  <nav class="navbar navbar-light bg-light fixed-top">
+  <div class="navbar-fixed">
+
+    <nav>
+      <div class="nav-wrapper white">
+        <div class="container">
+          <a href="/" class="brand-logo" style="margin-top: 20px;"><img src="../../media/profile_pics/instalogo.png"
+              alt=""></a>
+          <a href="#" data-target="mobile-links" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+          <ul class="right hide-on-med-and-down">
+            <ul id="dropdown1" class="dropdown-content">
+              {% if user.profile.pk %}
+              <li><a href="{% url 'profile' user.profile.pk %}">Profile</a></li>
+              {% endif %}
+              <li class="divider"></li>
+              <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+            {% if user.is_authenticated %}
+            <!-- <li><a href="{% url 'post-create' %}">New Post</a></li> -->
+            <li> <a href="/"><i class="material-icons black-text text-darken-4">home</i></a></li>
+            <li> <a href="/"><i class="material-icons black-text text-darken-4">message</i></a></li>
+            <li> <a href="/"><i class="material-icons black-text text-darken-4">add_location</i></a></li>
+            <li> <a href="/"><i class="material-icons black-text text-darken-4">notifications</i></a></li>
+            <li> <a class="modal-trigger" href="#modal1"><i
+                  class="material-icons black-text text-darken-4">add_box</i></a></li>
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i
+                  class="material-icons black-text text-darken-4">person</i><i
+                  class="material-icons right">arrow_drop_down</i></a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'user_registration' %}">Register</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <ul class="sidenav" id="mobile-links">
+      {% if user.is_authenticated %}
+      <!-- <li><a href="{% url 'post-create' %}">New Post</a></li> -->
+      <li> <a class="modal-trigger" href="#modal1">Modal</a></li>
+      <li><a href="#">Profile</a></li>
+      <li><a href="{% url 'logout' %}">Logout</a></li>
+      {% else %}
+      <li><a href="{% url 'login' %}">Login</a></li>
+      <li><a href="{% url 'user_registration' %}">Register</a></li>
+      {% endif %}
+    </ul>
+
+  </div>
+
+
+  <!-- <nav class="navbar navbar-light bg-light fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">Pics Haven</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
@@ -95,35 +155,32 @@
         </div>
       </div>
     </div>
-  </nav>
+  </nav> -->
   {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
-        <strong>{{message}}!</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    {% endfor %}
+  {% for message in messages %}
+  <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong>{{message}}!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+
+  {% endfor %}
   {% endif %}
-  {% block content %} {% endblock %} {% bootstrap_javascript %}
-  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+  {% block content %} {% endblock %}
+
+  {% block js %} {% endblock %}
+
+  {% include 'material/includes/material_js.html' %}
+
+  <script>
+    $(document).ready(function () {
+      $('.sidenav').sidenav();
+    })
+    $(".dropdown-trigger").dropdown();
+  </script>
+
 </body>
 
-<style>
-  .navbar {
-    -webkit-box-shadow: 0 8px 6px -6px #999;
-    -moz-box-shadow: 0 8px 6px -6px #999;
-    box-shadow: 0 8px 6px -6px #999;
-    padding-right: 50px;
-    padding-left: 50px;
-  }
 
-  .navbar-brand {
-    font-weight: bolder;
-  }
-
-  .nav-item {
-    font-weight: bold;
-  }
-</style>
 
 </html>
