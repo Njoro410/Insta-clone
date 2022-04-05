@@ -54,8 +54,6 @@ INSTALLED_APPS = [
     'insta.apps.InstaConfig',
     'bootstrap5',
     'cloudinary',
-    'crispy_forms',
-    'crispy_bootstrap5',
     'material',
     
    
@@ -156,9 +154,6 @@ STATIC_URL = 'static/'
 #MEDIA FILES
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-CRISPY_TEMPLATE_PACK = 'bootstrap5'
 django_heroku.settings(locals())
 
 # Default primary key field type
