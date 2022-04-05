@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-
+{% load material_form %}
 {% block content %}
 
 
 
-<div class="container">
+<div class="container" style="margin-top: 50px;">
     <div class="row">
         <div class="col sm5">
             <img src="{{user.profile.profile_pic.url}}" class="circle" width="100" alt="">
@@ -13,41 +13,69 @@
 
             <h4>{{user.username}}</h4>
             <h4>{{profile.bio}}</h4>
-            <h4>{{posts|length}} Posts</h4>
             <div class="container">
-                <p>{{TotalFollowers}}: Followers</p>
-                <p>{{TotalFollowing}}: Following</p>
+                <div class="row">
+                    <div class="col s12 details">
+                        <p>{{posts|length}}: Posts</p>
+                        <p>{{TotalFollowers}} <span>: Followers</span></p>
+                        <p>{{TotalFollowing}}: Following</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="container">
                 {% if user == request.user %}
                 {% else %}
                 {% if status %}
                 <form action="{% url 'remove-follower' profile.pk %}" method="POST">
                     {% csrf_token %}
-                    <button class="btn btn-outline-danger" type="submit">Unfollow</button>
+                    <button class="waves-effect waves-light btn" type="submit">Unfollow</button>
                 </form>
                 {% else %}
                 <form action="{% url 'add-follower' profile.pk %}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="profile_id" value="{{ profile.id }}" />
-                    <button class="btn btn-outline-success" type="submit">Follow</button>
+                    <button class="waves-effect waves-light btn" type="submit">Follow</button>
                 </form>
-                {% endif %}    
+                {% endif %}
                 {% endif %}
             </div>
-            
+            <hr>
 
-
-
-
-            {% for post in posts %}
+            <div class="row">
+                <div class="col s12 m7">
+                    {% for post in posts %}
+                  <div class="card">
+                    <div class="card-image">
+                       <a href="{% url 'post-detail' post.id %}"><img src="{{post.image.url}}" width="20%" alt=""></a> 
+                      <span class="card-title">{{post.name}}</span>
+                    </div>
+                  </div>
+                  {% empty %}
+                  <p>no posts yet</p>
+                  {% endfor %}
+                </div>
+              </div>
             <p>{{post.name}}</p>
 
-            {% empty %}
-            <p>no posts yet</p>
-            {% endfor %}
-            
-            
+
+
+
+
         </div>
     </div>
 </div>
 
+
+<style>
+    .details {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .details p {
+        margin-right: 10em;
+        font-weight: bolder;
+    }
+</style>
 {% endblock %}

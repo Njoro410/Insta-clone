@@ -9,6 +9,9 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
   {% block title %} {% endblock %} {# Load CSS #}
   {% block style %}
 
@@ -19,165 +22,86 @@
 DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
 </script>
 
-<!-- <script 
-src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js
-/materialize.min.js"></script> -->
 
-<body>
-  {# Display django.contrib.messages as Bootstrap alerts #}
+<div class="navbar-fixed">
 
-  <!-- <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">Pics Haven</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" name="query" id="search" type="search" placeholder="Enter Category"
-            aria-label="Search" />
-          <button class="btn btn-outline-success" type="submit">
-            Search Image
-          </button>
-        </form>
-      </div>
-    </div>
-  </nav> -->
+  <nav>
+    <div class="nav-wrapper white">
+      <div class="container">
+        <a href="/" class="brand-logo" style="margin-top: 20px;"><img src="../../media/profile_pics/instalogo.png"
+            alt=""></a>
+        <a href="#" data-target="mobile-links" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-  <div class="navbar-fixed">
-
-    <nav>
-      <div class="nav-wrapper white">
-        <div class="container">
-          <a href="/" class="brand-logo" style="margin-top: 20px;"><img src="../../media/profile_pics/instalogo.png"
-              alt=""></a>
-          <a href="#" data-target="mobile-links" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-
-          <ul class="right hide-on-med-and-down">
-            <ul id="dropdown1" class="dropdown-content">
-              {% if user.profile.pk %}
-              <li><a href="{% url 'profile' user.profile.pk %}">Profile</a></li>
-              {% endif %}
-              <li class="divider"></li>
-              <li><a href="{% url 'logout' %}">Logout</a></li>
-            </ul>
-            {% if user.is_authenticated %}
-            <!-- <li><a href="{% url 'post-create' %}">New Post</a></li> -->
-            <li> <a href="/"><i class="material-icons black-text text-darken-4">home</i></a></li>
-            <li> <a href="/"><i class="material-icons black-text text-darken-4">message</i></a></li>
-            <li> <a href="/"><i class="material-icons black-text text-darken-4">add_location</i></a></li>
-            <li> <a href="/"><i class="material-icons black-text text-darken-4">notifications</i></a></li>
-            <li> <a class="modal-trigger" href="#modal1"><i
-                  class="material-icons black-text text-darken-4">add_box</i></a></li>
-            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i
-                  class="material-icons black-text text-darken-4">person</i><i
-                  class="material-icons right">arrow_drop_down</i></a></li>
-            {% else %}
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'user_registration' %}">Register</a></li>
+        <ul class="right hide-on-med-and-down">
+          <ul id="dropdown1" class="dropdown-content">
+            {% if user.profile.pk %}
+            <li><a href="{% url 'profile' user.profile.pk %}">Profile</a></li>
             {% endif %}
+            <li class="divider"></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
           </ul>
-        </div>
-      </div>
-    </nav>
-    <ul class="sidenav" id="mobile-links">
-      {% if user.is_authenticated %}
-      <!-- <li><a href="{% url 'post-create' %}">New Post</a></li> -->
-      <li> <a class="modal-trigger" href="#modal1">Modal</a></li>
-      <li><a href="#">Profile</a></li>
-      <li><a href="{% url 'logout' %}">Logout</a></li>
-      {% else %}
-      <li><a href="{% url 'login' %}">Login</a></li>
-      <li><a href="{% url 'user_registration' %}">Register</a></li>
-      {% endif %}
-    </ul>
-
-  </div>
-
-
-  <!-- <nav class="navbar navbar-light bg-light fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">Pics Haven</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-        aria-controls="offcanvasNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Pics Haven</h5>
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Locations
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-                {% for location in images %}
-                <li class="nav-item">
-                    <a class="nav-link" class="btn btn-outline-primary" href="#">{{location.location.name}}</a>
-                </li>
-                
-                {% endfor %}
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Categories
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-  
-                <li class="nav-item">
-                    <a class="nav-link" class="btn btn-outline-primary" href="#">Category</a>
-                </li>
-                
-              
-              </ul>
-            </li>
-          </ul>
-          <form class="d-flex" role="search" action="/">
-            <input class="form-control me-2" type="search" name="category" placeholder="Enter Category"
-                aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-        </div>
+          {% if user.is_authenticated %}
+          <!-- <li><a href="{% url 'post-create' %}">New Post</a></li> -->
+          <li> <a href="/"><i class="material-icons black-text text-darken-4">home</i></a></li>
+          <li> <a href="/"><i class="material-icons black-text text-darken-4">message</i></a></li>
+          <li> <a href="/"><i class="material-icons black-text text-darken-4">add_location</i></a></li>
+          <li> <a href="/"><i class="material-icons black-text text-darken-4">notifications</i></a></li>
+          <li> <a class="modal-trigger" href="#modal1"><i
+                class="material-icons black-text text-darken-4">add_box</i></a></li>
+          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i
+                class="material-icons black-text text-darken-4">person</i><i
+                class="material-icons right">arrow_drop_down</i></a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'user_registration' %}">Register</a></li>
+          {% endif %}
+        </ul>
       </div>
     </div>
-  </nav> -->
-  {% if messages %}
-  {% for message in messages %}
-  <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
-    <strong>{{message}}!</strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
+  </nav>
+  <ul class="sidenav" id="mobile-links">
+    {% if user.is_authenticated %}
+    <!-- <li><a href="{% url 'post-create' %}">New Post</a></li> -->
+    <li> <a class="modal-trigger" href="#modal1">Modal</a></li>
+    <li><a href="#">Profile</a></li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+    {% else %}
+    <li><a href="{% url 'login' %}">Login</a></li>
+    <li><a href="{% url 'user_registration' %}">Register</a></li>
+    {% endif %}
+  </ul>
+
+</div>
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+  <strong>{{message}}!</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 
 
-  {% endfor %}
-  {% endif %}
-  {% block content %} {% endblock %}
+{% endfor %}
+{% endif %}
+{% block content %} {% endblock %}
 
-  {% block js %} {% endblock %}
+{% block js %} {% endblock %}
 
-  {% include 'material/includes/material_js.html' %}
+{% include 'material/includes/material_js.html' %}
 
-  <script>
-    $(document).ready(function () {
-      $('.sidenav').sidenav();
-    })
-    $(".dropdown-trigger").dropdown();
-  </script>
+<script>
+  $(document).ready(function () {
+    $('.sidenav').sidenav();
+  })
+  $(".dropdown-trigger").dropdown();
+</script>
+
+<style>
+  body {
+    background-color: #F8F9F9;
+    font-family: 'Catamaran', sans-serif;
+  }
+</style>
 
 </body>
 

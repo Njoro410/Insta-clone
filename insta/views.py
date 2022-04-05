@@ -36,13 +36,24 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(
-                request, f'Account for {username} created, please log in')
+            # messages.success(
+            #     request, f'Account for {username} created, please log in')
             return redirect('login')
     else:
         form = UserRegistrationForm()
 
     return render(request, 'accounts/registration.html', {'form': form})
+
+# def profile(request):
+#     update_form = UpdateProfileForm()
+#     profile_form = UpdateProfileForm()
+#     context = {
+#         'u_form':update_form,
+#         'p_form':profile_form,
+#     }
+    
+#     return render(request, 'profile.html', context)
+
 
 
 class PostListView(ListView):

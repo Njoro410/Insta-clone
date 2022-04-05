@@ -45,7 +45,7 @@ cloudinary.config(
 INSTALLED_APPS = [
     'material',
     'material.admin',
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -95,25 +95,25 @@ WSGI_APPLICATION = 'meta.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'instaclone',
-#         'USER': 'brian',
-#         'PASSWORD':'12345',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':'d4mhtr9gaffshs',
-        'USER':'tqcwsvdxjisqaa',
-        'PASSWORD':'31ad81bb5ea1c9fdd01e82aedf6113c1e0d5761a6ec1de79ef47852e155f242e',
-        'HOST':'ec2-52-73-155-171.compute-1.amazonaws.com',
-        'PORT':'5432',
+        'NAME': 'instaclone',
+        'USER': 'brian',
+        'PASSWORD':'12345',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME':'d4mhtr9gaffshs',
+#         'USER':'tqcwsvdxjisqaa',
+#         'PASSWORD':'31ad81bb5ea1c9fdd01e82aedf6113c1e0d5761a6ec1de79ef47852e155f242e',
+#         'HOST':'ec2-52-73-155-171.compute-1.amazonaws.com',
+#         'PORT':'5432',
+#     }
+# }
 
 
 # Password validation

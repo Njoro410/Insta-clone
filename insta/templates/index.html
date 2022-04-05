@@ -15,11 +15,11 @@
                     </div>
                     <div class="card-image">
                       <img src="{{post.image.url}}">
-                      <!-- <span class="card-title"></span> -->
-                      <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                      <!-- <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a> -->
                     </div>
                     <div class="card-content">
-                        <h2><a href="{% url 'post-detail' post.id %}">{{post.name}}</a></h2>
+                      <span class="card-title"><p><a href="{% url 'post-detail' post.id %}">{{post.name}}</a></p></span>
+                        
                       <p>{{post.caption}}</p>
                       
                     </div>
@@ -71,5 +71,25 @@
         $('.modal').modal();
     });
 </script>
+
+<style>
+  .card-header {
+    display: flex;
+    flex-direction: row;
+  }
+  .card-header img {
+    padding: 10px;
+  }
+  .card-header a {
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+  }
+  .card-title {
+    font-weight:bolder;
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+  }
+</style>
 
 {% endblock %}
