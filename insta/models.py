@@ -10,9 +10,9 @@ from cloudinary.models import CloudinaryField
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(
-        upload_to='profile_pics', default='profile_pics/avatar.png')
-    # profile_pic = CloudinaryField('image')
+    # profile_pic = models.ImageField(
+    #     upload_to='profile_pics', default='profile_pics/avatar.png')
+    profile_pic = CloudinaryField('image')
     bio = models.TextField(max_length=100)
 
 
@@ -21,8 +21,8 @@ class Profile(models.Model):
 
 
 class Post(models.Model):
-    image = models.ImageField(upload_to='posts')
-    # image = CloudinaryField('image')
+    # image = models.ImageField(upload_to='posts')
+    image = CloudinaryField('image')
     name = models.CharField(max_length=50)
     caption = models.CharField(max_length=100)
     profile = models.ForeignKey(User, on_delete=models.CASCADE)
