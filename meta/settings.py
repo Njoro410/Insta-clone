@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-h%k0mlr3xhrm=qlj836g7&d^ue8!s8f45y2)spe+m^^9z9@(o%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['instaclone.herokuapp.com']
+ALLOWED_HOSTS = ['instaclone5652.herokuapp.com']
 
 #cloudinary config
 cloudinary.config( 
