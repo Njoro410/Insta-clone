@@ -1,22 +1,23 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+
+{% load material_form %}
 
 {% block content %}
 
-<div class="container" style="margin-top: 150px;">
+<div class="container" style="margin-top: 50px;">
     <form action="" method="POST">
         {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Join Insta</legend>
-                {{ form | crispy }}
-        </fieldset>
+      
+            <legend class="border-bottom mb-4">Create Account</legend>
+            {% form form=form %}{% endform %}
+     
 
         
         <button class="btn btn-outline-primary" type="submit">submit</button>
     </form>
     <div class="border-top pt-3">
         <small class="text-muted">
-            Already have an account? <a class="ml-2" href="#">Login</a>
+            Already have an account? <a class="ml-2" href="{% url 'login' %}">Login</a>
         </small>
     </div>
 </div> 
