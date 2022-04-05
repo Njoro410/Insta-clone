@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col sm5">
+            <img src="{{user.profile.profile_pic.url}}" class="circle" width="100" alt="">
+        </div>
+        <div class="col sm7">
+
+            <h4>{{user.username}}</h4>
+            <h4>{{profile.bio}}</h4>
+            <h4>{{posts|length}} Posts</h4>
+            <div class="container">
+                <p>{{TotalFollowers}}: Followers</p>
+                <p>{{TotalFollowing}}: Following</p>
+                {% if user == request.user %}
+                {% else %}
+                {% if status %}
+                <form action="{% url 'remove-follower' profile.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-danger" type="submit">Unfollow</button>
+                </form>
+                {% else %}
+                <form action="{% url 'add-follower' profile.pk %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="profile_id" value="{{ profile.id }}" />
+                    <button class="btn btn-outline-success" type="submit">Follow</button>
+                </form>
+                {% endif %}    
+                {% endif %}
+            </div>
+            
+
+
+
+
+            {% for post in posts %}
+            <p>{{post.name}}</p>
+
+            {% empty %}
+            <p>no posts yet</p>
+            {% endfor %}
+            
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}
