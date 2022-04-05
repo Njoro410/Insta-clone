@@ -43,8 +43,8 @@ cloudinary.config(
 # Application definition
 
 INSTALLED_APPS = [
-    
-    # 'material.admin',
+    'material',
+    'material.admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     'insta.apps.InstaConfig',
     'bootstrap5',
     'cloudinary',
-    'material',
+    'crispy_forms',
+    'crispy_bootstrap5',
     
    
 ]
