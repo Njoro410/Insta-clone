@@ -49,7 +49,7 @@ class Comments(models.Model):
     
 
     def __str__(self):
-        return f'{self.user.id} Comments'
+        return self.content
 
 
 class UserFollowing(models.Model):
