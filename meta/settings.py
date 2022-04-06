@@ -96,25 +96,25 @@ WSGI_APPLICATION = 'meta.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'instaclone',
-        'USER': 'brian',
-        'PASSWORD':'12345',
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME':'dfhcjbpcnl2lf0',
-#         'USER':'xitxtgmfldmepv',
-#         'PASSWORD':'a8bebeb983d6cfffc32f39eba1c35c49f0116bc184df67caed492c1b74875cce',
-#         'HOST':'ec2-34-231-63-30.compute-1.amazonaws.com',
-#         'PORT':'5432',
+#         'NAME': 'instaclone',
+#         'USER': 'brian',
+#         'PASSWORD':'12345',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME':'dfhcjbpcnl2lf0',
+        'USER':'xitxtgmfldmepv',
+        'PASSWORD':'a8bebeb983d6cfffc32f39eba1c35c49f0116bc184df67caed492c1b74875cce',
+        'HOST':'ec2-34-231-63-30.compute-1.amazonaws.com',
+        'PORT':'5432',
+    }
+}
 
 
 # Password validation
