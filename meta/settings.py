@@ -43,9 +43,8 @@ cloudinary.config(
 # Application definition
 
 INSTALLED_APPS = [
-    'material',
-    'material.admin',
-    # 'django.contrib.admin',
+    # 'material.admin',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -56,6 +55,8 @@ INSTALLED_APPS = [
     'cloudinary',
     'crispy_forms',
     'crispy_bootstrap5',
+    'material',
+
     
    
 ]
