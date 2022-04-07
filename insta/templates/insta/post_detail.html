@@ -32,7 +32,7 @@
             {% for comment in post.comments.all %}
             <ul class="collection">
                 <li class="collection-item avatar">
-                  <img src="{{comment.user.profile.profile_pic}}" alt="" class="circle">
+                  <img src="{{comment.user.profile.profile_pic.url}}" alt="" class="circle">
                   <span class="title"><strong>{{comment.user.username}}</strong></span>
                   <p>{{comment.posted_on}}</p><br>
                   <p>{{comment.content}}</p>                 
