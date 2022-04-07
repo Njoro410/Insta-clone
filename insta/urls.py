@@ -21,6 +21,7 @@ urlpatterns = [
     path('profile/<int:pk>/followers/add', AddFollower.as_view(), name='add-follower'),
     path('profile/<int:pk>/followers/remove', RemoveFollower.as_view(), name='remove-follower'),
     path('post/<int:pk>/comment/',CommentCreateView.as_view(), name='add_comment'),
+    path('search/', views.search_results, name='search_results')
 ]
 
 if settings.DEBUG:

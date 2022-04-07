@@ -177,3 +177,17 @@ class RemoveFollower(LoginRequiredMixin, View):
                                      following_user_id=user).delete()
 
         return redirect('profile', pk=profile.pk)
+
+def search_results(request):
+
+    if 'username' in request.GET and request.GET["username"]:
+        search_term = request.GET.get("username")
+        searched_username = User.objects.filter(username=search_term)
+        posts = Post.objects.filter(profile=searched_username)
+        message = f"{search_term}"
+
+        return render(request, 'search.html', {"message": message, "user": searched_username, 'posts':posts})
+
+    else:
+        message = "You haven't searched for any user"
+        return render(request, 'search.html', {"message": message})

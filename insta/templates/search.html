@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            {% if user %}
+            <h2>Results for user <b>{{message}}</b></h2>
+            {% else %}
+            <p>No user with username <b>{{message}}</b></p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            {% if user %}
+            {% for user in user %}
+            <h2><a href="{% url 'profile' user.pk %}">visit profile</a></h2>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
